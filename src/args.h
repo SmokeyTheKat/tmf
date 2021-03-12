@@ -6,13 +6,15 @@
 void print_help(void)
 {
 	ddPrint_cstring("tmf\n");
-	ddPrint_cstring("usage: tmf [-MODE] [-OPTIONS...] file\n");
+	ddPrint_cstring("usage: tmf [-MODE] [-OPTIONS...] targetfile\n");
 	ddPrint_cstring("modes:\n");
-	ddPrint_cstring("	-r	-	receive once\n");
-	ddPrint_cstring("	-rc	-	receive constantly\n");
-	ddPrint_cstring("	-s	-	send once\n");
-	ddPrint_cstring("	-sc	-	send on signal\n");
+	ddPrint_cstring("	-r		-	receive once\n");
+	ddPrint_cstring("	-rc		-	receive constantly\n");
+	ddPrint_cstring("	-s		-	send once\n");
+	ddPrint_cstring("	-sc		-	send on signal\n");
 	ddPrint_cstring("options:\n");
+	ddPrint_cstring("	-i x.x.x.x	-	target ip\n");
+	ddPrint_cstring("	-p x		-	target port\n");
 	ddPrint_cstring("docs: https://ddmo.xyz/projects/tmf/\n");
 	exit(0);
 }
@@ -34,13 +36,16 @@ void read_args(int argc, char** argv)
 		ddString dsarg = make_ddString(argv[i]);
 		if (ddString_compare_cstring(dsarg, "--help") || ddString_compare_cstring(dsarg, "-help"))
 			print_help();
-/*
-		else if (ddString_compare_cstring(dsarg, "-o"))
+		else if (ddString_compare_cstring(dsarg, "-i"))
 		{
 			cargs[cargsCount].name = dsarg;
 			cargs[cargsCount++].value = make_ddString(argv[++i]);
 		}
-*/
+		else if (ddString_compare_cstring(dsarg, "-p"))
+		{
+			cargs[cargsCount].name = dsarg;
+			cargs[cargsCount++].value = make_ddString(argv[++i]);
+		}
 		else if (dsarg.cstr[0] == '-')
 		{
 			cargs[cargsCount++].name = dsarg;

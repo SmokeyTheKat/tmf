@@ -6,7 +6,10 @@
 
 void tmf_receive(char repeat)
 {
-	struct dsocketServer sck = make_dsocketServer(5273);
+	int port = 5273;
+	if (args_if_def(make_constant_ddString("-p")))
+		port = ddString_to_int(args_get_value(make_constant_ddString("-p")));
+	struct dsocketServer sck = make_dsocketServer(port);
 	if (dsocketServer_bind(&sck))
 		ddError("unable to bind server");
 	dsocketServer_start_listen(&sck);
