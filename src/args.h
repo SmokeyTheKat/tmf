@@ -1,7 +1,7 @@
 #ifndef __tmf_args_h__
 #define __tmf_args_h__
 
-#include <ddcPrint.h>
+#include "./ddcLib/ddcPrint.h"
 
 void print_help(void)
 {

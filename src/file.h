@@ -1,7 +1,7 @@
 #ifndef __tmf_file_h__
 #define __tmf_file_h__
 
-#include <ddcString.h>
+#include "./ddcLib/ddcString.h"
 
 ddString read_file(const char* path)
 {

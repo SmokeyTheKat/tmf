@@ -1,6 +1,8 @@
 #ifndef __tmf_receive_h__
 #define __tmf_receive_h__
 
+#include "./ddcLib/ddcPrint.h"
+
 #include "./args.h"
 #include "./utils.h"
 

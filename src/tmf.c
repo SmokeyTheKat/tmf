@@ -1,8 +1,9 @@
 #include <stdio.h>
-#include <ddcDef.h>
-#include <ddcPrint.h>
-#include <ddcString.h>
-#include <ddcSocket.h>
+
+#include "./ddcLib/ddcDef.h"
+#include "./ddcLib/ddcPrint.h"
+#include "./ddcLib/ddcString.h"
+#include "./ddcLib/ddcSocket.h"
 
 #include "./args.h"
 #include "./file.h"

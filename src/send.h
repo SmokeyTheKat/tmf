@@ -1,8 +1,8 @@
 #ifndef __tmf_send_h__
 #define __tmf_send_h__
 
-#include <ddcKeyboard.h>
-#include <ddcPrint.h>
+#include "./ddcLib/ddcKeyboard.h"
+#include "./ddcLib/ddcPrint.h"
 
 #include "./args.h"
 #include "./utils.h"
