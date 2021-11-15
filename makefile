@@ -1,4 +1,13 @@
+PREFIX=~/.local
+
+CSRCS=$(shell find ./src/ -type f -name "*.c")
+
+CC=gcc
+CFLAGS=-I./include/ -Ofast -Wall -g
+
 all:
-	gcc ./src/tmf.c -o ./tmf -Wall
+	$(CC) -o ./tmf ${CSRCS} ${CFLAGS}
 install:
-	cp ./tmf /usr/bin/
+	cp ./tmf ${PREFIX}/bin/
+tc: all
+	./tmf
