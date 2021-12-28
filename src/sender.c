@@ -11,18 +11,31 @@ int sender_send(char* ip, int port, char* filename)
 	struct dsocket_tcp_client client = make_dsocket_tcp_client(ip, port);
 
 	if (dsocket_tcp_client_connect(&client) != 0)
+	{
+		close(client.dscr);
 		return 1;
+	}
 
 	if (dsocket_tcp_client_receive(client, buffer, sizeof(buffer)) <= 0)
+	{
+		close(client.dscr);
 		return 1;
+	}
 
 	if (strcmp(buffer, "send ready"))
+	{
+		close(client.dscr);
 		return 1;
+	}
 
 	FILE* fp = fopen(filename, "r");
 
 	if (fp == 0)
+	{
+		fclose(fp);
+		close(client.dscr);
 		return 1;
+	}
 
 	int byte_count;
 	while ((byte_count = fread(buffer, 1, sizeof(buffer), fp)) > 0)
