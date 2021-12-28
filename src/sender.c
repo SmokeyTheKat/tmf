@@ -26,7 +26,8 @@ int sender_send(char* ip, int port, char* filename)
 
 	int byte_count;
 	while ((byte_count = fread(buffer, 1, sizeof(buffer), fp)) > 0)
-		dsocket_tcp_client_send(client, buffer, byte_count);
+		if (dsocket_tcp_client_send(client, buffer, byte_count) <= 0)
+			break;
 
 	fclose(fp);
 	close(client.dscr);
