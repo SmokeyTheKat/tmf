@@ -4,6 +4,8 @@
 #include "args.h"
 #include "sender.h"
 #include "receiver.h"
+#include <time.h>
+#include <unistd.h>
 
 int main(int argc, char** argv)
 {
@@ -14,7 +16,11 @@ int main(int argc, char** argv)
 		{
 			if (receiver_receive(args.port, args.filename) == 0)
 				printf("receive successful\n");
-			else printf("receive failed\n");
+			else
+			{
+				printf("receive failed\n");
+				sleep(1);
+			}
 		} while (args.continuous);
 	}
 	else if (args.mode == MODE_SEND)
