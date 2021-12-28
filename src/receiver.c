@@ -11,9 +11,7 @@ int receiver_receive(int port, char* filename)
 
 	if (dsocket_tcp_server_bind(&server) != 0)
 	{
-		printf("a\n");
 		close(server.dscr);
-		printf("b\n");
 		return 1;
 	}
 	if (dsocket_tcp_server_start_listen(&server) != 0)
@@ -27,7 +25,6 @@ int receiver_receive(int port, char* filename)
 	FILE* fp = fopen(filename, "w");
 	if (fp == 0)
 	{
-		fclose(fp);
 		close(server.dscr);
 		return 1;
 	}
